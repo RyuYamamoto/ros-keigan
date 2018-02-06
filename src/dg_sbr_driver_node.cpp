@@ -17,7 +17,6 @@ class DGControl
 			r_motor->speed(10);
 			l_motor->speed(10);
 
-			ROS_INFO_STREAM("cmd vel");
 			sub_cmd_vel = nh.subscribe("cmd_vel", 10, &DGControl::callback_cmd_vel, this);
 		}
 		~DGControl()
@@ -38,7 +37,6 @@ class DGControl
 		}
 		void callback_cmd_vel(const geometry_msgs::Twist::ConstPtr& vel)
 		{
-			ROS_INFO_STREAM("cmd_vel///");
 			geometry_msgs::Twist velocity = *vel;
 			float forward = velocity.linear.x / 0.05;
 			float rotation = velocity.angular.z * 0.1 / (2*0.05);
